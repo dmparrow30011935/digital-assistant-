@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://use.fontawesome.com/3375840c43.js"></script>
+
+    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script> 
+    <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+
+    
+    <script>
+   
+    </script>
+<style> 
+   html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  border: 0;
+  overflow: hidden; /*  Disable scrollbars */
+  display: block;  /* No floating content on sides */
+}
+a-scence {
+  min-height: 450px;
+  
+  width: 100%;
+  z-index: 0;
+}
+.chat-bar{
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 0;
+}
+.chat-block{
+  display: grid;
+  height: 100px;
+  width:100px;
+  background: rgb(221, 194, 194);
+  border-radius: 50px;
+  
+  align-items: center;
+}
+i{
+  align-self: center;
+  justify-self: center;
+  font-size: 50px;
+  color:white
+}
+.a-enter-ar-button, .a-enter-vr-button{
+  left:10px;
+}
+</style>
+
+
+
+</head>
+<body>
+    
+    <a-scene embedded  loading-screen="dotsColor: red; backgroundColor: black">
+    
+        <a-assests>
+            <a-asset-item  id="cityModel" src="./landscape.glb"></a-asset-item>
+        </a-assests>
+
+
+
+
+        <a-light
+        type="point" 
+        color="#FFAE64"
+        position="4.7 4.5 -0.4"
+        rotation="0 210 0"></a-light>
+        <a-mixin id="giant" scale="0.4 0.2 0.2"></a-mixin>
+        <a-light type="point" color="#FFAE64" position="0 4.5 -7"></a-light>
+        <a-entity id="rig"  position="0 3.5 0">
+           <a-entity camera look-controls mouse-cursor>
+                <a-cursor fuse="false" color="yellow"></a-cursor>
+              </a-entity>
+        </a-entity>
+      
+        <a-entity gltf-model="#cityModel" rotation="0 210 0" position="0 1 -7" scale="0.5 0.5 0.5"></a-entity>
+        <a-sky color="black"></a-sky>
+        <a-entity star-system></a-entity>
+        <a-entity 
+            id="cube" 
+            class="clickable"
+            light="type: point; intensity: 2.0"
+            position="-1.0 3 -4.8"
+            geometry="primitive: box" material="color: red; opacity: 0.6"
+            animation="property: rotation; to: 360 360 360; loop: true; dur: 5000; easing: linear;"       
+            event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1"
+            event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1">
+            <a-entity 
+                scale="0.2 0.2 0.2"
+                animation="property: scale; dir: alternate; dur: 1600; loop: true; to: 0.4 0.4 0.4"
+                geometry="primitive: box" material="color: red"
+                />
+
+        </a-entity>
+        
+    </a-scene>
+  
+  <div id="webchat"></div>
+  <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
+
+</body>
+<script>
+  
+  document.querySelector('a-scene')
+
+
+
+   document.querySelector('#cube').addEventListener('click', function () {
+    this.setAttribute('material', 'color', 'blue');
+     console.log('I was clicked!');
+        changeColor();
+
+    });
+    changeColor =(newColor=null) => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    let currentBuffer = null;
+
+    var synth = window.speechSynthesis;
+    console.log(newColor);
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
+    let colorToChangeTo = (newColor == null|undefined) ? (colors[Math.floor(Math.random() * colors.length)]) : newColor ;
+
+        
+
+    let toSpeak = "Hello, I am an experimental version of A Digital interveiw assistant, how may i be of service."
+    var utterThis = new SpeechSynthesisUtterance(toSpeak);
+    utterThis.rate = 0.95;
+    utterThis.voice = synth.getVoices()[3];
+    //console.log( synth.getVoices());
+    synth.speak(utterThis);
+    listen();
+
+
+    }
+
+    listen = () =>  { 
+    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    window.SpeechGrammarList = window.webitSpeechGrammarList || window.SpeechGrammarList;
+    var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
+    var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+    const recognition = new window.SpeechRecognition();
+
+    console.log(recognition)
+    if ('SpeechRecognition' in window) {
+      console.log('supported speech')
+    } else {
+      console.error('speech not supported')
+      upgrade();
+    } 
+    recognition.lang = 'en-US';
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.start();
+    console.log('Ready to receive a color command.');
+    let i = 0;
+
+    recognition.onresult = function(event) {
+      var synth = window.speechSynthesis;
+    
+
+      var interim_transcript,final_transcript  = '';
+       
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+        document.querySelector('.rw-new-message').value += final_transcript;
+        document.querySelector('.rw-send').disabled = false
+        console.log(document.querySelector('.rw-send'));
+        document.querySelector('.rw-send').click();
+        listen();
+      } else {
+        interim_transcript += event.results[i][0].transcript;
+      }
+    }
+    
+   
+   
+        
+      
+      
+    }}
+
+    async function getMedia(constraints) {
+  let stream = null;
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    console.log(stream);
+  } catch(err) {
+    console.log(navigator.mediaDevices.getUserMedia(constraints));
+  }
+}
+spokenReply =(message) => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    let currentBuffer = null;
+
+    var synth = window.speechSynthesis;
+
+    var utterThis = new SpeechSynthesisUtterance(message);
+    utterThis.rate = 0.95;
+    utterThis.voice = synth.getVoices()[3];
+    //console.log( synth.getVoices());
+    synth.speak(utterThis);
+    listen();
+
+
+    }
+  
+  getMedia();
+
+  WebChat.default.init({
+    selector: "#webchat",
+    initPayload: "/get_started",
+    customData: {"language": "en"}, // arbitrary custom data. Stay minimal as this will be added to the socket
+    socketUrl: "http://localhost:5005",
+    socketPath: "/socket.io/",
+    title: "Digital assistant",
+    subtitle: "chat",
+    docVeiwer:true,
+    customMessageDelay:(message) => {
+      console.log(message);
+      spokenReply(message);
+      let delay = message.length * 30;
+      if (delay > 2 * 1000) delay = 3 * 1000;
+      if (delay < 400) delay = 1000;
+      return delay;
+    },
+    onWidgetEvent:{
+      onChatOpen:listen()
+    }
+  })
+
+const chat =document.querySelector('#webChat');
+chat.addEventListener(event =>{
+  console.log("event",event);
+})
+
+
+
+</script>
+</html>

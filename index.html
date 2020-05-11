@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -139,12 +139,12 @@ i{
 
         
 
-    let toSpeak = "Hello, I am an experimental version of A Digital interveiw assistant, how may i be of service."
+   /* let toSpeak = "Hello, I am an experimental version of A Digital interveiw assistant, how may i be of service."
     var utterThis = new SpeechSynthesisUtterance(toSpeak);
     utterThis.rate = 0.95;
     utterThis.voice = synth.getVoices()[3];
     //console.log( synth.getVoices());
-    synth.speak(utterThis);
+    synth.speak(utterThis);*/
     listen();
 
 
@@ -230,7 +230,7 @@ spokenReply =(message) => {
     selector: "#webchat",
     initPayload: "/get_started",
     customData: {"language": "en"}, // arbitrary custom data. Stay minimal as this will be added to the socket
-    socketUrl: "http://35.201.6.210",
+    socketUrl: "./bot",
     socketPath: "/socket.io/",
     title: "Digital assistant",
     subtitle: "chat",

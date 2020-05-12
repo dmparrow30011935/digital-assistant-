@@ -2,75 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dave Arrows Digital assistant</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://use.fontawesome.com/3375840c43.js"></script>
-
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/matthewbryancurtis/aframe-star-system-component/db4f1030/index.js"></script> 
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
-<style> 
-   html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  border: 0;
-  overflow: hidden; /*  Disable scrollbars */
-  display: block;  /* No floating content on sides */
-}
-a-scence {
-  min-height: 450px;
-  
-  width: 100%;
-  z-index: 0;
-}
-.chat-bar{
-  display: flex;
-  flex-direction: row-reverse;
-  position: absolute;
-  top: 0;
-}
-.chat-block{
-  display: grid;
-  height: 100px;
-  width:100px;
-  background: rgb(221, 194, 194);
-  border-radius: 50px;
-  
-  align-items: center;
-}
-i{
-  align-self: center;
-  justify-self: center;
-  font-size: 50px;
-  color:white
-}
-.a-enter-ar-button, .a-enter-vr-button{
-  left:10px;
-}
-.a-enter-ar-button{
-  display: hidden;
-}
-</style>
-
-
-
 </head>
 <body>
-    
     <a-scene embedded  loading-screen="dotsColor: red; backgroundColor: black">
-    
         <a-assests>
             <a-asset-item  id="cityModel" src="./landscape.glb"></a-asset-item>
         </a-assests>
-
-
-
-
         <a-light
         type="point" 
         color="#FFAE64"
@@ -78,9 +24,13 @@ i{
         rotation="0 210 0"></a-light>
         <a-mixin id="giant" scale="0.4 0.2 0.2"></a-mixin>
         <a-light type="point" color="#FFAE64" position="0 4.5 -7"></a-light>
-        <a-entity id="rig"  position="0 3.5 0">
+        <a-entity id="rig"  position="0 3.5 0"
+       >
            <a-entity camera look-controls mouse-cursor>
-                <a-cursor fuse="false" color="yellow"></a-cursor>
+                <a-cursor fuse="false" color="yellow"
+               
+                ></a-cursor>
+                
               </a-entity>
         </a-entity>
       
@@ -111,142 +61,125 @@ i{
 
 </body>
 <script>
-  
-  document.querySelector('a-scene')
+  var state = {
+    toggle: false
+  }
 
 
 
-   document.querySelector('#cube').addEventListener('click', function () {
-    this.setAttribute('material', 'color', 'blue');
-     console.log('I was clicked!');
+
+   document.querySelector('#webchat').addEventListener('click', function () {
+     console.log('listening');
         changeColor();
-
+        if(state.toggle){ 
+        moveCamera();
+        animateAvatar();
+        listen();
+        }else{
+        moveCamera([4,4,0],[-12,12,5]);
+        animateAvatar([1.5,3.5,-2]);
+        }
+        state.toggle = !(state.toggle);
     });
+
+
     changeColor =(newColor=null) => {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext();
-    let currentBuffer = null;
-
-    var synth = window.speechSynthesis;
-    console.log(newColor);
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue'];
+    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'blue'];
     let colorToChangeTo = (newColor == null|undefined) ? (colors[Math.floor(Math.random() * colors.length)]) : newColor ;
-
-        
-
-   /* let toSpeak = "Hello, I am an experimental version of A Digital interveiw assistant, how may i be of service."
-    var utterThis = new SpeechSynthesisUtterance(toSpeak);
-    utterThis.rate = 0.95;
-    utterThis.voice = synth.getVoices()[3];
-    //console.log( synth.getVoices());
-    synth.speak(utterThis);*/
-    listen();
-
-
+    console.log(colorToChangeTo);
+    document.querySelector('#cube').setAttribute('material',"color:"+ colorToChangeTo +"; opacity: 0.6")
     }
+
+    moveCamera = (point=[0, 3.5 ,0],rotation=[0,0,0])=>{
+      let rig = document.querySelector('#rig');
+      rig.setAttribute('animation',"property:position; dir: alternate; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
+      rig.setAttribute('animation__2',"property:rotation;  dur: 1600; to:"+rotation[0]+" "+rotation[1]+" "+rotation[2]);
+     
+    }
+    
+    animateAvatar = (point=[-1.0, 3, -4.8]) => {
+      let avatar = document.querySelector('#cube');
+      avatar.setAttribute('animation__2',"property:position; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
+    }
+
+
 
     listen = () =>  { 
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     window.SpeechGrammarList = window.webitSpeechGrammarList || window.SpeechGrammarList;
-    var colors = [ 'aqua' , 'azure' , 'beige', 'bisque', 'black', 'blue', 'brown', 'chocolate', 'coral', 'crimson', 'cyan', 'fuchsia', 'ghostwhite', 'gold', 'goldenrod', 'gray', 'green', 'indigo', 'ivory', 'khaki', 'lavender', 'lime', 'linen', 'magenta', 'maroon', 'moccasin', 'navy', 'olive', 'orange', 'orchid', 'peru', 'pink', 'plum', 'purple', 'red', 'salmon', 'sienna', 'silver', 'snow', 'tan', 'teal', 'thistle', 'tomato', 'turquoise', 'violet', 'white', 'yellow'];
-    var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
     const recognition = new window.SpeechRecognition();
 
-    console.log(recognition)
-    if ('SpeechRecognition' in window) {
-      console.log('supported speech')
-    } else {
-      console.error('speech not supported')
-      upgrade();
-    } 
-    recognition.lang = 'en-US';
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.start();
-    console.log('Ready to receive a color command.');
-    let i = 0;
-
-    recognition.onresult = function(event) {
-      var synth = window.speechSynthesis;
     
+    if (!'SpeechRecognition' in window) {
+      upgrade();
+      console.error('speech not supported')
+    } else {
+      recognition.lang = 'en-US';
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.start();
+      console.log('Ready to receive input.');
+      let i = 0;
 
-      var interim_transcript,final_transcript  = '';
-       
-    for (var i = event.resultIndex; i < event.results.length; ++i) {
-      if (event.results[i].isFinal) {
-        final_transcript += event.results[i][0].transcript;
-        document.querySelector('.rw-new-message').value += final_transcript;
-        document.querySelector('.rw-send').disabled = false
-        console.log(document.querySelector('.rw-send'));
-        document.querySelector('.rw-send').click();
-        listen();
-      } else {
-        interim_transcript += event.results[i][0].transcript;
+      recognition.onresult = function(event) {
+        var synth = window.speechSynthesis;
+        var interim_transcript,final_transcript  = '';
+
+        for (var i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            final_transcript += event.results[i][0].transcript;
+            document.querySelector('.rw-new-message').value = final_transcript;
+            document.querySelector('.rw-send').disabled = false
+            console.log(document.querySelector('.rw-send'));
+            document.querySelector('.rw-send').click();
+          } else {
+            console.log(event.results[i][0].transcript)
+            interim_transcript += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ;
+            document.querySelector('.rw-new-message').value += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ; ;
+          }
+        }   
       }
     }
-    
-   
-   
-        
-      
-      
-    }}
-
-    async function getMedia(constraints) {
-  let stream = null;
-
-  try {
-    stream = await navigator.mediaDevices.getUserMedia(constraints);
-    console.log(stream);
-  } catch(err) {
-    console.log(navigator.mediaDevices.getUserMedia(constraints));
   }
-}
-spokenReply =(message) => {
+
+
+spokenReply = (message) => {
+
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioContext = new AudioContext();
     let currentBuffer = null;
-
     var synth = window.speechSynthesis;
-
     var utterThis = new SpeechSynthesisUtterance(message);
-    utterThis.rate = 0.95;
-    utterThis.voice = synth.getVoices()[3];
-    //console.log( synth.getVoices());
+    utterThis.voice = (window.chrome) ? synth.getVoices()[3] : synth.getVoices()[0];
     synth.speak(utterThis);
+    utterThis.onend = function(event) {
+    console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
+  }
+
     listen();
 
 
     }
-  
-  //getMedia();
 
   WebChat.default.init({
     selector: "#webchat",
     initPayload: "/get_started",
-    customData: {"language": "en"}, // arbitrary custom data. Stay minimal as this will be added to the socket
+    customData: {"language": "en"}, 
     socketUrl: "https://digitalinterview.nz",
     socketPath: "/socket.io/",
     title: "Digital assistant",
     subtitle: "chat",
-    docVeiwer:true,
+    docViewer:true,
     customMessageDelay:(message) => {
       console.log(message);
       spokenReply(message);
-      let delay = message.length * 30;
-      if (delay > 2 * 1000) delay = 3 * 1000;
-      if (delay < 400) delay = 1000;
-      return delay;
+     
     },
-    onWidgetEvent:{
-      onChatOpen:listen()
-    }
+    
+    
   })
 
-const chat =document.querySelector('#webChat');
-chat.addEventListener(event =>{
-  console.log("event",event);
-})
+listen();
 
 
 

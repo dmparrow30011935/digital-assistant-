@@ -153,10 +153,11 @@ spokenReply = (message) => {
     utterThis.voice = (window.chrome) ? synth.getVoices()[3] : synth.getVoices()[0];
     synth.speak(utterThis);
     utterThis.onend = function(event) {
-    console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
-  }
+      console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
+      listen();
+    }
 
-    listen();
+    
 
 
     }

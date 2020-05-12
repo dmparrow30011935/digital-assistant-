@@ -24,8 +24,7 @@
         rotation="0 210 0"></a-light>
         <a-mixin id="giant" scale="0.4 0.2 0.2"></a-mixin>
         <a-light type="point" color="#FFAE64" position="0 4.5 -7"></a-light>
-        <a-entity id="rig"  position="0 3.5 0"
-       >
+        <a-entity id="rig"  position="0 3.5 0">
            <a-entity camera look-controls mouse-cursor>
                 <a-cursor fuse="false" color="yellow"
                
@@ -56,61 +55,70 @@
         
     </a-scene>
   
-  <div id="webchat"></div>
+  <div id="webchat" onclick="webchatWidgetOpen()"></div>
   <script src="https://storage.googleapis.com/mrbot-cdn/webchat-latest.js"></script>
 
-</body>
+
 <script>
-  var state = {
-    toggle: false
-  }
+  
 
+  
+let webchatWidgetOpen = () => {
+ // console.log('listening',WebChat.isOpen());
 
-
-
-   document.querySelector('#webchat').addEventListener('click', function () {
-     console.log('listening');
+  let widgetLauncher = document.querySelector(".rw-launcher");
+  //console.log(document.querySelectorAll('button'));
+  if(!WebChat.isOpen()){ 
+    console.log('listening',WebChat.isOpen());
+    moveCamera([4,4,0],[-12,12,5]);
+    animateAvatar([1.5,3.5,-2]);
+    widgetLauncher.addEventListener('click', function (){
+      console.log('listening rw launcher',WebChat.isOpen()); 
         changeColor();
-        if(state.toggle){ 
         moveCamera();
         animateAvatar();
-        listen();
-        }else{
-        moveCamera([4,4,0],[-12,12,5]);
-        animateAvatar([1.5,3.5,-2]);
-        }
-        state.toggle = !(state.toggle);
+        document.querySelector("#webchat").setAttribute("onclick","webchatWidgetOpen()")
     });
-
-
-    changeColor =(newColor=null) => {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'blue'];
-    let colorToChangeTo = (newColor == null|undefined) ? (colors[Math.floor(Math.random() * colors.length)]) : newColor ;
-    console.log(colorToChangeTo);
-    document.querySelector('#cube').setAttribute('material',"color:"+ colorToChangeTo +"; opacity: 0.6")
-    }
-
-    moveCamera = (point=[0, 3.5 ,0],rotation=[0,0,0])=>{
-      let rig = document.querySelector('#rig');
-      rig.setAttribute('animation',"property:position; dir: alternate; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
-      rig.setAttribute('animation__2',"property:rotation;  dur: 1600; to:"+rotation[0]+" "+rotation[1]+" "+rotation[2]);
-     
-    }
+    document.querySelector("#webchat").removeAttribute("onclick"); 
+    listen();
+  }else if(WebChat.isOpen()){
+    moveCamera();
+    animateAvatar();
+    listen();
+  }
+  
     
-    animateAvatar = (point=[-1.0, 3, -4.8]) => {
-      let avatar = document.querySelector('#cube');
-      avatar.setAttribute('animation__2',"property:position; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
-    }
+};
 
 
 
-    listen = () =>  { 
-    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-    window.SpeechGrammarList = window.webitSpeechGrammarList || window.SpeechGrammarList;
-    const recognition = new window.SpeechRecognition();
+changeColor =(newColor=null) => {
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'blue'];
+let colorToChangeTo = (newColor == null|undefined) ? (colors[Math.floor(Math.random() * colors.length)]) : newColor ;
+document.querySelector('#cube').setAttribute('material',"color:"+ colorToChangeTo +"; opacity: 0.6")
+}
+
+moveCamera = (point=[0, 3.5 ,0],rotation=[0,0,0])=>{
+  let rig = document.querySelector('#rig');
+  rig.setAttribute('animation',"property:position; dir: alternate; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
+  rig.setAttribute('animation__2',"property:rotation;  dur: 1600; to:"+rotation[0]+" "+rotation[1]+" "+rotation[2]);
+  
+}
+
+animateAvatar = (point=[-1.0, 3, -4.8]) => {
+  let avatar = document.querySelector('#cube');
+  avatar.setAttribute('animation__2',"property:position; dur: 1600; loop: false; to:"+point[0]+" "+point[1]+" "+point[2]);
+}
+
+
+
+listen = () =>  { 
+  window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+  window.SpeechGrammarList = window.webitSpeechGrammarList || window.SpeechGrammarList;
+  const recognition = new window.SpeechRecognition();
 
     
-    if (!'SpeechRecognition' in window) {
+  if (!'SpeechRecognition' in window) {
       upgrade();
       console.error('speech not supported')
     } else {
@@ -125,17 +133,24 @@
         var synth = window.speechSynthesis;
         var interim_transcript,final_transcript  = '';
 
-        for (var i = event.resultIndex; i < event.results.length; ++i) {
-          if (event.results[i].isFinal) {
+      for (var i = event.resultIndex; i < event.results.length; ++i) {
+        if (event.results[i].isFinal) {
             final_transcript += event.results[i][0].transcript;
-            document.querySelector('.rw-new-message').value = final_transcript;
-            document.querySelector('.rw-send').disabled = false
-            console.log(document.querySelector('.rw-send'));
-            document.querySelector('.rw-send').click();
+            console.log("state.toggle: ",state.toggle)
+            if(WebChat.isOpen()){
+              document.querySelector('.rw-new-message').value = final_transcript;
+              document.querySelector('.rw-send').disabled = false
+              console.log(document.querySelector('.rw-send'));
+              document.querySelector('.rw-send').click();
+            }else{
+                WebChat.send(final_transcript);
+            }
           } else {
-            console.log(event.results[i][0].transcript)
-            interim_transcript += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ;
-            document.querySelector('.rw-new-message').value += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ; ;
+            if(WebChat.isOpen()){
+              console.log(event.results[i][0].transcript)
+              interim_transcript += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ;
+              document.querySelector('.rw-new-message').value += (!event.results[i][0].transcript == undefined) ? event.results[i][0].transcript : "" ; ;
+            }
           }
         }   
       }
@@ -144,23 +159,25 @@
 
 
 spokenReply = (message) => {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  const audioContext = new AudioContext();
 
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext();
-    let currentBuffer = null;
-    var synth = window.speechSynthesis;
-    var utterThis = new SpeechSynthesisUtterance(message);
-    utterThis.voice = (window.chrome) ? synth.getVoices()[3] : synth.getVoices()[0];
-    synth.speak(utterThis);
-    utterThis.onend = function(event) {
-      console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
-      listen();
-    }
+  let currentBuffer = null;
+  var synth = window.speechSynthesis;
+  var utterThis = new SpeechSynthesisUtterance(message);
 
-    
+  utterThis.voice = (window.chrome) ? synth.getVoices()[3] : synth.getVoices()[0];
+  synth.speak(utterThis);
+
+ 
 
 
-    }
+
+  utterThis.onend = function(event) {
+    console.log('Utterance has finished being spoken after ' + event.elapsedTime + ' milliseconds.');
+    listen();
+  }
+}
 
   WebChat.default.init({
     selector: "#webchat",
@@ -171,18 +188,24 @@ spokenReply = (message) => {
     title: "Digital assistant",
     subtitle: "chat",
     docViewer:true,
-    customMessageDelay:(message) => {
-      console.log(message);
-      spokenReply(message);
-     
-    },
     
+    onSocketEvent:{
+      'bot_uttered': (message) => {
+        spokenReply(message.text);
+        console.log(message)
+      },
+      'connect': () => {
+        console.log('connection established');
+        WebChat.close();
+        WebChat.send({"user_uttered":"utter_greet"});
+        listen();
+        }
+      
+    }
     
-  })
-
-listen();
-
-
+})
+ 
 
 </script>
+</body>
 </html>

@@ -51,9 +51,8 @@ html, body {
     left: 0;
     right: 0;
   
-    width: 200px;
-    height: 200px;
-  
+    
+    background: #000;
     margin: auto;
   }
   

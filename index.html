@@ -13,6 +13,9 @@
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
 </head>
 <body>
+  <div id="splash">
+    <div class="loading"></div>
+  </div>
     <a-scene embedded  loading-screen="dotsColor: red; backgroundColor: black">
         <a-assests>
             <a-asset-item  id="cityModel" src="./landscape.glb"></a-asset-item>
@@ -60,7 +63,13 @@
 
 
 <script>
-  
+  document.addEventListener('DOMContentLoaded', function() {
+    var scene = document.querySelector('a-scene');
+    var splash = document.querySelector('#splash');
+    scene.addEventListener('loaded', function (e) {
+        splash.style.display = 'none';
+    });
+});
 
   
 let webchatWidgetOpen = () => {

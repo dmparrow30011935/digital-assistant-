@@ -19,7 +19,7 @@
     <div class="loading"></div>
     <div class="splash-message ">Interactive CV is Currently loading</div>
   </div>
-    <a-scene embedded  loading-screen="dotsColor: red; backgroundColor: black">
+    <a-scene embedded  >
         <a-assests>
             <a-asset-item  id="cityModel" src="./landscape.glb"></a-asset-item>
         </a-assests>
@@ -67,7 +67,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var scene = document.querySelector('a-scene');
+    var scene = document.querySelector('cityModel');
     var splash = document.querySelector('#splash');
     scene.addEventListener('model-loaded', function (e) {
       splash.setAttribute('class',"fade-out")

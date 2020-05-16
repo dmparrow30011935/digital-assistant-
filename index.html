@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Digital assistant</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://use.fontawesome.com/3375840c43.js"></script>
     <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
@@ -15,7 +17,7 @@
 <body>
   <div id="splash">
     <div class="loading"></div>
-    
+    <div class="splash-message ">Interactive CV is Currently loading</div>
   </div>
     <a-scene embedded  loading-screen="dotsColor: red; backgroundColor: black">
         <a-assests>
@@ -68,9 +70,16 @@
     var scene = document.querySelector('a-scene');
     var splash = document.querySelector('#splash');
     scene.addEventListener('model-loaded', function (e) {
-        splash.style.display = 'none';
+      splash.setAttribute('class',"fade-out")
+      promise
+      .then
+       (listen())
     });
 });
+
+let promise = new Promise(function(resolve) {
+  setTimeout(() => resolve(splash.style.display = 'none'),2000)
+})
 
   
 let webchatWidgetOpen = () => {
@@ -80,7 +89,7 @@ let webchatWidgetOpen = () => {
   //console.log(document.querySelectorAll('button'));
   if(!WebChat.isOpen()){ 
     console.log('listening',WebChat.isOpen());
-    moveCamera([4,4,0],[-12,12,5]);
+    moveCamera([4,4,0],[-12,33,5]);
     animateAvatar([1.5,3.5,-2]);
     widgetLauncher.addEventListener('click', function (){
       console.log('listening rw launcher',WebChat.isOpen()); 
@@ -139,9 +148,16 @@ scaleAvatarSpeech = (lengthOfAnnimationChain,transform) => {
 
 
 listen = () =>  { 
+  var recognition;
+  if(window.chrome){
   window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
   window.SpeechGrammarList = window.webitSpeechGrammarList || window.SpeechGrammarList;
-  const recognition = new window.SpeechRecognition();
+  recognition = new window.SpeechRecognition();
+  }else{
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    recognition = new SpeechRecognition;
+  }
+  
 
     
   if (!'SpeechRecognition' in window) {
@@ -189,11 +205,10 @@ spokenReply = (message) => {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
   const audioContext = new AudioContext();
 
-  const audioChunks = [];
-
 
 
   var synth = window.speechSynthesis;
+  synth.resume();
   var utterThis = new SpeechSynthesisUtterance(message);
 
   utterThis.voice = (window.chrome) ? synth.getVoices()[3] : synth.getVoices()[0];
@@ -210,9 +225,13 @@ spokenReply = (message) => {
 
    
     };
-  })
-
-  synth.speak(utterThis)
+  })  
+  
+  console.log("message: ",message,audioContext,synth,utterThis)
+  utterThis.volume = 1;
+  utterThis.pitch = 1;
+  utterThis.rate = 1;
+  synth.speak(utterThis);
  
 
   utterThis.onboundary = function(event) {
@@ -234,11 +253,12 @@ spokenReply = (message) => {
     socketPath: "/socket.io/",
     title: "Digital assistant",
     subtitle: "chat",
-    docViewer:true,
+    docViewer:false,
     
     onSocketEvent:{
       'bot_uttered': (message) => {
         spokenReply(message.text);
+       // (message.text == "Awesome! i love making frontend magic!") ? frontendMagic() : null ;
         console.log(message);
         //(message == "Bye" || message == "Cioa" || message == "Tschüss") ? WebChat.
       },

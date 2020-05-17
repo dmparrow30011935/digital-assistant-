@@ -18,6 +18,7 @@
   <div id="splash">
     <div class="loading"></div>
     <div class="splash-message ">Interactive CV is Currently loading</div>
+    
   </div>
     <a-scene embedded  >
         <a-assests>
@@ -77,7 +78,7 @@
     });
 });
 
-let promise = new Promise(function(resolve) {
+let promise = () => new Promise(function(resolve) {
   setTimeout(() => resolve(splash.style.display = 'none'),2000)
 })
 

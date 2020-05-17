@@ -73,12 +73,12 @@
     scene.addEventListener('model-loaded', function (e) {
       splash.setAttribute('class',"fade-out")
       promise()
-      .then
-       (listen())
+      .then(listen())
     });
 });
 
-let promise = () =>{ new Promise(function(resolve) {
+promise = () =>{ 
+  return new Promise(function(resolve) {
   setTimeout(() => resolve(splash.style.display = 'none'),2000)}
 )}
 
@@ -267,7 +267,6 @@ spokenReply = (message) => {
         console.log('connection established');
         WebChat.close();
         WebChat.send({"user_uttered":"utter_greet"});
-        listen();
         }
       
     }

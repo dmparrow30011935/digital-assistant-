@@ -68,19 +68,19 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var scene = document.querySelector('cityModel');
+    var scene = document.querySelector('a-scene');
     var splash = document.querySelector('#splash');
     scene.addEventListener('model-loaded', function (e) {
       splash.setAttribute('class',"fade-out")
-      promise
+      promise()
       .then
        (listen())
     });
 });
 
-let promise = () => new Promise(function(resolve) {
-  setTimeout(() => resolve(splash.style.display = 'none'),2000)
-})
+let promise = () =>{ new Promise(function(resolve) {
+  setTimeout(() => resolve(splash.style.display = 'none'),2000)}
+)}
 
   
 let webchatWidgetOpen = () => {

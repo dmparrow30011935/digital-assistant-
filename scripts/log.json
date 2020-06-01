@@ -1,0 +1,406 @@
+{
+    "log-1":    { 
+        "i0":"../img/1280px-React-icon.png",
+        "T":"React and create-app",
+        "h":5,
+        "p1":"Initiate react application as the framework for saving the project online. Start reading through react documentation and begin react to tutorials online on LinkedIn learning with Linda content: \n\nCourse name : React: Building Progressive Web Apps (PWAs)"
+    },
+    "log-2":    {
+        "i0":"../img/1280px-React-icon.png",
+        "T":"React and create-app : continued",
+        "h":4 ,
+        "p0":"Course name : React: Building Progressive Web Apps (PWAs)",
+
+        "i1":"../img/colab.png",
+        "T1":" Google CoLab",
+        "h1":2 ,
+        "p1":"Exploratory look into Google COLAB and the free computing resources that it offers "
+        
+    }, 
+    "log-3":    {
+        
+    }, 
+    "log-4":    {
+        
+    },
+    "log-5":    {
+        "i0":"../img/colab.png",
+        "T":" Google CoLab",
+        "h": 2,
+        "p0":"Ran through the Google colab for GPT2-simple",
+        "i1":"../img/tensorflow.png",
+        "T1":" Google CoLab tensorflow",
+        "h1": 5,
+        "p1":"experiment with tensorlow through the Google colab"
+    },
+    "log-6":    {
+        "i0":"../img/colab.png",
+        "T" :" Google CoLab",
+        "h": 8 
+    },
+    "log-7":    {
+        "i0":"../img/colab.png",
+        "T":" Google CoLab",
+        "h": 8 
+    },
+    "log-8":    {},
+    "log-9":    {
+        "e":[
+            "https://aframe.io/",
+            "https://aframe.io/aframe/examples/animation/aframe-logo/"
+                ],
+        "T":"A - frame",
+        "h":8,
+        "p0":" Spent several h investigating the a-frame extended reality framework and how it could be implemented as the virtual reality environment for the digital assistant. began to read through the documentation and come to grips with the code base."
+            
+       },
+    "log-10":   {
+        
+        "i0":"../img/Blender.png",
+        "T0":"Blender Asset Creation",
+        "h": 4,
+        "p0":"After reading through the documentation of A-Frame yesterday, I wanted to load some custom models so fired up blender and began modeling."
+   },
+    "log-11":   {
+        
+        "i0":"../img/Blender.png",
+        "T0":"Blender Asset Creation",
+        "h": 5,
+        "p0":"After reading through the documentation of A-Frame yesterday, I wanted to load some custom models so fired up blender and began modeling."
+   
+    },
+    "log-12":   {
+        "i0":"../img/Blender.png",
+        "T0":"Blender Asset Creation",
+        "h": 5,
+        "p0":"After reading through the documentation of A-Frame yesterday, I wanted to load some custom models so fired up blender and began modeling."
+   
+    },
+    "log-13":   {
+        
+    },
+    "log-14":   {
+        "i0":"../img/1280px-React-icon.png",
+        "T":"React and create-app : continued",
+        "h":5,
+        "p0":"Course name : React: Testing and Debugging"
+
+    },
+    "log-15":   {
+        "i":"../img/flask.png",
+        "T":"Flask backend development framework",
+        "h0":8,
+        "p":"text"
+        
+    },
+    "log-16":   {
+        "i":"../img/flask.png",
+        "T":"Flask backend development framework",
+        "h0":8,
+        "p":"text"
+        
+    },
+    "log-17":   {
+        
+    },
+    "log-18":   {
+        "i":"../img/flask.png",
+        "T":"Flask backend development framework",
+        "h0":8,
+        "p":"text"
+        
+    },
+    "log-19":   {
+        "i0":"../img/1280px-React-icon.png",
+        "T":"React and create-app : continued",
+        "h":7,
+        "p0":"web speech"
+    },
+    "log-20":   {
+        "i0":"../img/1280px-React-icon.png",
+        "T":"React and create-app : continued",
+        "h":6,
+        "p0":"development"
+    },
+    
+    "log-21":   {
+       
+    },
+    "log-22":   {
+       
+    },
+    "log-23":   {
+        "e":[
+            "https://aframe.io/",
+            "https://aframe.io/aframe/examples/animation/aframe-logo/"
+                ],
+        "T":"A - frame",
+        "h":8,
+        "p0":" pointer events"
+          
+    },
+    "log-24":   {
+        "e":[
+            "https://aframe.io/",
+            "https://aframe.io/aframe/examples/animation/aframe-logo/"
+                ],
+        "T":"A - frame",
+        "h":8,
+        "p0":"aninimations"
+          
+    },
+    "log-25":   {
+      
+    },
+    "log-26":   {
+      
+    },
+    "log-27":   {
+      
+    },
+    "log-28":   {
+       
+    },
+    "log-29":   {
+        
+    },
+    "log-30":   {
+        
+    },
+    "log-31":   {
+        "i":"",
+        "T":"Meeting ",
+        "p":"disscussed poor loading times ",
+        "i1":"../img/react-scrapped.png",
+        "T1":"React developmet scrapped",
+        
+        "i2":"../img/js.png",
+        "T2":"Vannila rebuild",
+        "h1":5.5
+        
+    },
+    "log-32":   {
+     
+        
+        "i0":"../img/js.png",
+        "T0":"Vannila rebuild",
+        "h0":5
+    },
+    "log-33":   {
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":5
+    },
+    "log-34":   {
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":6
+    },
+    "log-35":   {
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":6
+    },
+    "log-36":   {
+        
+        "i0":"../img/Blender.png",
+        "T0":"Blender Asset Creation",
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":8
+  
+    },
+    "log-37":   {
+        
+        
+    },
+    "log-38":   {
+        
+        
+    },
+    "log-39":   {
+        "i0":"../img/colab.png",
+        "T":" Google CoLab",
+       
+        "i1":"../img/tensorflow.png",
+        "T1":" Google CoLab Tensorflow",
+        "p0":"development",
+        "h1": 8
+        
+    },
+   
+    "log-40":   {
+        "i0":"../img/colab.png",
+        "T":" Google CoLab",
+       
+        "i1":"../img/tensorflow.png",
+        "T1":" Google CoLab Tensorflow",
+        
+        "h1": 8,
+        "p0":"development"
+        
+    },
+    "log-41":   {
+        "i0":"../img/colab-scrapped.png",
+        "T0":" Google CoLab scrapped",
+        "i1":"../img/Flask-scrapped.png",
+        "T1":" Flask scrapped",
+        "i2":"../img/Rasa.png",
+        "T2":"Rasa Open source Ai",
+        
+        "h":8,
+        "p0":"Rasa Master Class"
+    },
+    "log-42":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        
+        "h":8,
+        "p1":"Rasa Master Class"
+    },
+    "log-43":   {
+        "i0":"../img/GCloud.png",
+        "T0":"Google Cloud deployment",
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        
+        "h":8,
+        "p1":"Rasa X Deployment on GCloud"
+    },
+    "log-44":   {
+        "i0":"../img/Netlify.png",
+        "T0":"Netlify deployment",
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":5,
+        "p1":"deployto Netlify"
+    },
+    "log-45":   {
+        "i0":"../img/GCloud.png",
+        "T0":"Google Cloud deployment",
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "i2":"../img/Netlify.png",
+        "T2":"Netlify deployment",
+        "i3":"../img/js.png",
+        "T3":"Vannila rebuild",
+        "f":"fab fa-connectdevelop",
+        "T4":"Back and front-end intergration",
+        "h":8,
+        "p1":"Https Coupling"
+       
+    },
+    "log-46":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"Data Iteration and Story development"
+        
+    },
+    "log-47":   {
+        "i1":"../img/js.png",
+        "T1":"Vannila rebuild",
+        "h1":6,
+        "p1":"Bug fix"
+    },
+    "log-48":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"Data Iteration and Story development"
+        
+    },
+    "log-49":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"text"
+    },
+    "log-50":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-51":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-52":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":5,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-53":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-54":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-55":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-56":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-57":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-58":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"Data Iteration and Story development"
+    },
+    "log-59":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "p1":"User Testing",
+        "h":5
+    },
+    "log-60":   {
+        "i1":"../img/Rasa.png",
+        "T1":"Rasa Open source Ai",
+        "h":8,
+        "p1":"User Testing"
+    },
+    "log-61":   {
+        "f":"fas fa-list-alt",
+        "T":"Burndown page",
+        "h":6
+    },
+    "log-62":   {
+        "f":"fas fa-list-alt",
+        "T":"Log Pages",
+        "h":6
+    },
+    "log-63":   {
+       
+    },
+    "log-64":   {
+        
+    }
+}
+
+
+
+
+

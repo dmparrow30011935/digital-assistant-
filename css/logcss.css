@@ -1,0 +1,51 @@
+.maincol{
+    grid-template-columns: 0.2fr 1fr;
+}
+.cs2{
+    grid-column: span 2;
+}
+.day{
+    height: 5vh;
+    min-width: 50%;
+}
+.log{
+    min-height: 10vh;
+    min-width: 50%;
+}
+h1{
+ padding: 0.5%;
+ text-align: center;
+ color:#00F100;
+ font-size: x-large;
+}
+h3{
+ padding: 5%;
+ color: #ffffff;
+ font-size: large;
+ text-align: left;
+ grid-column: 2/3;
+}
+
+
+.img{
+    width: auto;
+    height: 50px;
+    margin: 1vh;
+    border-radius: 10px;
+}
+iframe{
+    width: 100%;
+    height: auto;
+    outline: 0px;
+    border: 0px;
+    
+    margin: 1vh;
+    border-radius: 10px;
+}
+.nopointer{
+    pointer-events: none;
+}
+p{
+    grid-column: span 2;
+}
+i{color:#fff}

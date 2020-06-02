@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/fa543a2e81.js" crossorigin="anonymous"></script>
+    
    <style>
        video,iframe{
            width: 100%;
@@ -38,6 +38,19 @@
         i{
             padding:5px ;
         }
+        .row{
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: span 3;
+        }
+        .row>a{
+            padding:5px ;
+            color: #fff;
+            text-decoration: none;
+        }
+        .row>h2{
+            margin:0px;
+        }
         
     </style>
 </head>
@@ -56,9 +69,13 @@
             <div class="board">
                 <a href="../project-log/"><h2>Project log</h2></a>
             </div>
-            <div class="board">
+            <div class="board row">
+                
                 <h2 class="current-page">Presentation</h2>
-            </div>
+                <a href="#presentation"><h2>Video Presentation</h2></a>
+                <a href="#slides"><h2>Slide Presentation</h2></a>
+                </div>
+            
             <div class="board">
                 <a href="https://github.com/dmparrow30011935/digital-assistant-" target="_blank"><h2>Front-end repository</h2></a>
             </div>
@@ -68,25 +85,28 @@
             
         </div>
         <div class="container">
-            
-                <section class=" maincol">
+           
+                <section id="presentation" class=" maincol">
                     <div class="flex">
-                        <a href="https://drive.google.com/file/d/1BCoQ9b1hGU3N0MigVeNcjOj9DBYGoJpH/view?usp=sharing" download><i class="fas fa-file-download fa-4x"></i></a>
+                        <a href="./" download><i class="fas fa-file-download fa-4x"></i></a>
                         <h1>Video Presentation</h1>
                     </div>
-                    <video  controls src="https://drive.google.com/file/d/1BCoQ9b1hGU3N0MigVeNcjOj9DBYGoJpH/view?usp=sharing"></video>
+                    <video  controls src="./"></video>
                     
                 </section>
-
-
-                <section class=" maincol">
-                    <h1>Slide Presentation</h1>
-                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vStj2JHeITGKRsCJdw_IdR0BVcQ9o6v9sxoqfTFHEAYd4QJRTO8eaXmaahTYE9OrsRlAVmxlJEYZ5r7/embed?start=true&loop=false&delayms=3000" frameborder="0"  allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true">
-                    </iframe>
+            
+                <section id="slides" class=" maincol">
+                    <div class="flex">
+                        <a href="./videos/30011935sildeshow.mp4" download><i class="fas fa-file-download fa-4x"></i></a>
+                        <h1>Slide Presentation</h1>
+                    </div>
+                    <video  controls src="./videos/30011935slideshow.mp4"></video>
+                    
                 </section>
             
         </div>
     <script src="../scripts/burndownchart.js"></script>
+    <script src="https://kit.fontawesome.com/fa543a2e81.js" crossorigin="anonymous"></script>
     <script>
      
 

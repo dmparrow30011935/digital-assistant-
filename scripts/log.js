@@ -6,7 +6,7 @@
        
        count(data);
     })
-    .catch(err => console.error(err));
+    .catch(err => failureToLoad(err));
     fetch("https://trello.com/b/DMQHAGYq.json")
     .then(res => res.json())
     .then(data => {
@@ -28,11 +28,27 @@
         }
     }
     
-    dateBlock = (i) =>{
+    failureToLoad = (err) => {
+        let page = document.getElementById("page");
+        console.error(err);
+        let error = {
+            "f":"fas fa-bug",
+            "T":"Error Loading Log",
+            "p":"log loads dynamicly please disable add blockers"
+        }
+        let logContent = createlogContent(error,0)
+         
+        page.append(dateBlock("error :",err));
+        page.append(logContent[0]);
+        document.querySelector('i').style.color = "red";
+    }
+
+
+    dateBlock = (i,text="Day ") =>{
         let dateBlock = document.createElement('div');
         dateBlock.setAttribute('class','board day');
         let h2 = document.createElement('h2');
-        h2.innerText = "Day "+i;
+        h2.innerText = text +i;
         dateBlock.append(h2);
         return dateBlock;
     }
@@ -72,7 +88,7 @@
 
    logIcon = (iconType) => {
         let icon= document.createElement('i');
-        icon.setAttribute('class',iconType+" img fa-4x");
+        icon.setAttribute('class',iconType+" img fa-3x");
       
        return icon;
    }
